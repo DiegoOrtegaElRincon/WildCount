@@ -3,9 +3,14 @@ import React from 'react'
 const Startup = () => {
     return (
         <div className='h-[100vh] relative'>
-            <span className='bg-black h-[2rem] w-[50vw] absolute top-[55%] -translate-y-1/2 left-0'></span>
-            <span className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-10 bg-white h-[10rem] w-[10rem] rounded-full border-8 border-black'></span>
-            <span className='bg-black h-[2rem] w-[50vw] absolute top-[45%] -translate-y-1/2 right-0'></span>
+            {/* Bottom line on the left side */}
+            <span className='bg-black h-[2rem] w-[50vw] absolute top-[57.5%] -translate-y-1/2 left-0'></span>
+            {/* Circle in the middle */}
+            <span className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-10 bg-white h-[15rem] w-[15rem] rounded-full border-[12px] border-black'></span>
+            {/* Line in the circle in the middle */}
+            <span className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20 bg-black h-[2.4rem] w-[14.8rem] -rotate-[40deg]'></span>
+            {/* Top line on the right side */}
+            <span className='bg-black h-[2rem] w-[50vw] absolute top-[42.5%] -translate-y-1/2 right-0'></span>
         </div>
     )
 }
