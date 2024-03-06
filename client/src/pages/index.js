@@ -3,6 +3,7 @@ import Extinct from './extinct/Extinct'
 import Home from './home/Home'
 import Regions from './regions/Regions'
 import User from './user/User'
+import Startup from './startup/Startup'
 
 export {
     Animals,
@@ -10,4 +11,5 @@ export {
     Home,
     Regions,
     User,
+    Startup,
 }
