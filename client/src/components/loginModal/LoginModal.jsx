@@ -1,21 +1,73 @@
-import React from 'react';
+import React, { useState } from 'react';
+import './LoginModal.scss';
+import { loginInput, loginButton } from '../../constants';
+import { Link } from 'react-router-dom';
 
 const LoginModal = ({ isOpen, onClose, onLogin }) => {
-  const handleLogin = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = (event) => {
+    event.preventDefault(); // Prevent form submission
+
+    // Validation logic
+    if (!username || !password) {
+      alert('Both fields are required!');
+      return;
+    }
+
     onClose(); // Close the modal
     onLogin(); // Perform login action
   };
 
+  const handleGuest = () => {
+    onClose();
+    onLogin();
+  };
+
+
   return (
-    <div className={`${isOpen ? 'block' : 'hidden'} fixed inset-0 bg-gray-500 bg-opacity-75 overflow-y-auto z-50`} onClick={onClose}>
-      <div className="bg-white w-96 rounded shadow-lg p-6 relative left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center" onClick={(e) => e.stopPropagation()}>
-        <div className="cursor-pointer absolute right-2 top-2" onClick={onClose}>
-          <span className='block h-1 w-6 bg-black rotate-45 translate-y-2'></span>
-          <span className='block h-1 w-6 bg-black -rotate-45 translate-y-1'></span>
+    <div className={`${isOpen ? 'block' : 'hidden'} fixed inset-0 bg-gray-500 bg-opacity-75 overflow-y-auto z-50`}>
+      <div className="flex justify-center items-center h-screen">
+        <div className="bg-white p-8 rounded w-72 text-center relative">
+          <div className='absolute right-2 top-5 cursor-pointer' onClick={onClose}>
+            <span className='bg-black h-1 w-6 block rotate-45'></span>
+            <span className='bg-black h-1 w-6 block -rotate-45 -translate-y-1'></span>
+          </div>
+          <h2 className="text-xl font-bold mb-4">Login</h2>
+          <form onSubmit={(event) => handleLogin(event)}>
+            {loginInput.map((loginInput) => (
+              <input
+                className="block w-full px-4 py-2 mb-4 border border-gray-300 rounded focus:outline-none focus:border-blue-500 border-gradient"
+                type={loginInput.text}
+                name={loginInput.name}
+                placeholder={loginInput.placeholder}
+                key={loginInput.id}
+                value={loginInput.name === 'username' ? username : password}
+                onChange={(e) => {
+                  if (loginInput.name === 'username') {
+                    setUsername(e.target.value);
+                  } else {
+                    setPassword(e.target.value);
+                  }
+                }}
+              />
+            ))}
+            {loginButton.map((loginButton) => (
+              <button
+                className="w-full px-4 py-2 mb-2 rounded gradient-button focus:outline-none"
+                key={loginButton.id}
+                type="submit"
+              >
+                {loginButton.text}
+              </button>
+            ))}
+          </form>
+          <div className="text-sm">
+            <button onClick={handleGuest} to="/home" className="text-blue-500">Continue as Guest</button> |
+            <Link to="/" className="text-blue-500"> Google Login</Link>
+          </div>
         </div>
-        <h2 className="text-xl font-semibold mb-4">Modal Content</h2> 
-        <p className="mb-4">This is the content of the modal.</p>
-        <button className='bg-blue-500 hover:bg-blue-600 rounded px-4 py-2 text-white text-xl' onClick={handleLogin}>Login</button>
       </div>
     </div>
   );
