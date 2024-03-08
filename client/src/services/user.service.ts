@@ -44,7 +44,7 @@ const loggedUser = () => {
 }
 
 const signOut = () => {
-//limpia la cookie (Metodo supabase o el mio?)
+  //Delete the cookie
 }
 
 // const deleteAccount = () => {

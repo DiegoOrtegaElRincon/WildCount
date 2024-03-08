@@ -5,9 +5,7 @@ import './App.css'
 function App() {
 
   return (
-    <Router>
-
-      
+    <Router> 
       <Routes>
         <Route path='/' Component={Startup} />
         <Route path='/home' Component={Home} />
