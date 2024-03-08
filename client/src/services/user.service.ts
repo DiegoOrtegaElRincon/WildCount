@@ -8,6 +8,16 @@ const getToken = () => {
   return token;
 }
 
+const verifyEmail = token  => {
+  let body = {};
+  http.put(`${url}user`, body, {
+    headers: {
+      ...http.defaults.headers.common,
+      Authorization: `Bearer ${token}`
+    }
+  });
+}
+
 const signUp = (password:string, email:string) => {
   let body = {
     "email": email,
@@ -44,6 +54,7 @@ const signOut = () => {
 const UsersService = {
   signUp,
   signIn,
+  verifyEmail,
   loggedUser,
   signOut,
   // deleteAccount
