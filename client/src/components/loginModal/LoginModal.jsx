@@ -45,7 +45,8 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
               type="password"
               name="Password"
               placeholder="Password"
-
+              onChange={(e)=>{setPassword(e.target)}}
+            />
             <button
               className="w-full px-4 py-2 mb-2 rounded gradient-button focus:outline-none"
               type="submit"
@@ -58,17 +59,6 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
             >
               Register
             </button>
-              onChange={(e)=>{setPassword(e.target)}}
-            />
-            {loginButton.map((loginButton) => (
-              <button
-                className="w-full px-4 py-2 mb-2 rounded gradient-button focus:outline-none"
-                key={loginButton.id}
-                type="submit"
-              >
-                {loginButton.text}
-              </button>
-            ))}
           </form>
           <div className="text-sm">
             <button onClick={handleGuest} to="/home" className="text-blue-500">Continue as Guest</button> |
