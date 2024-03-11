@@ -5,30 +5,28 @@ const url = "rest/v1/animals"
 const getAnimals = () => {
     return http.get(url)
         .then(response => {
-            // Handle the response data in here
-            console.log(response.data);
+            return response.data;
         })
         .catch(error => {
-            // Handle the error here if the request fails
             console.error("Error fetching data: ", error);
+            throw error; // Rethrow the error so the calling component can catch it
         });
 }
 
-const getAnimalById = (id:string) => {
-    return http.get(url + "?id.eq" + id)
+const getAnimalById = (id) => {
+    return http.get(`${url}?id.eq=${id}`)
         .then(response => {
-            // Handle the response data in here
-            console.log(response.data);
+            return response.data;
         })
         .catch(error => {
-            // Handle the error here if the request fails
             console.error("Error fetching data: ", error);
+            throw error; // Rethrow the error so the calling component can catch it
         });
 }
 
 const AnimalService = {
     getAnimals,
     getAnimalById
-  }
-  
-  export default AnimalService;
+};
+
+export default AnimalService;
