@@ -41,12 +41,16 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
               type="text"
               name="Name"
               placeholder="Username"
+              value={username} // Add value prop
+              onChange={(e) => setUsername(e.target.value)} // Add onChange handler
             />
             <input
               className="block w-full px-4 py-2 mb-4 border border-gray-300 rounded focus:outline-none focus:border-blue-500 border-gradient"
               type="password"
               name="Password"
               placeholder="Password"
+              value={password} // Add value prop
+              onChange={(e) => setPassword(e.target.value)} // Add onChange handler
             />
 
             {loginButton.map((loginButton) => (
