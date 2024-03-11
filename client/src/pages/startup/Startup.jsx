@@ -24,7 +24,7 @@ const Startup = () => {
         <div className='h-[15rem] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
             {/* Bottom line on the left side */}
             <span id='left-line' className='bg-black h-[2rem] w-[50vw] absolute top-[20%] -translate-y-1/2 left-0'></span>
-            <div id='middle-circle' className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-10'>
+            <div id='middle-circle' className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-50'>
                 {/* Circle in the middle */}
                 <span className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-white h-[15rem] w-[15rem] rounded-full border-[12px] border-black cursor-pointer' onClick={() => setIsModalOpen(true)}></span>
                 {/* Line in the circle in the middle */}

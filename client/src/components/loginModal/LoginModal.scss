@@ -20,3 +20,8 @@ button.gradient-button {
   button.gradient-button:hover {
     background: linear-gradient(to top, #18C9DA, #A6FF86);
   }
+
+  .fixed {
+    z-index: 9999; // Set a high z-index value to ensure the modal appears above other content
+  }
+  
