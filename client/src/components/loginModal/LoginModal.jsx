@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './LoginModal.scss';
-import { loginInput, loginButton } from '../../constants';
 import { Link } from 'react-router-dom';
 
 const LoginModal = ({ isOpen, onClose, onLogin }) => {
@@ -34,7 +33,7 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
           </div>
           <h2 className="text-xl font-bold mb-4">Login</h2>
           <form onSubmit={(event) => handleLogin(event)}>
-          <input
+            <input
               className="block w-full px-4 py-2 mb-4 border border-gray-300 rounded focus:outline-none focus:border-blue-500 border-gradient"
               type="text"
               name="Name"
@@ -46,6 +45,19 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
               type="password"
               name="Password"
               placeholder="Password"
+
+            <button
+              className="w-full px-4 py-2 mb-2 rounded gradient-button focus:outline-none"
+              type="submit"
+            >
+              Login
+            </button>
+            <button
+              className="w-full px-4 py-2 mb-2 rounded gradient-button focus:outline-none"
+              type="submit"
+            >
+              Register
+            </button>
               onChange={(e)=>{setPassword(e.target)}}
             />
             {loginButton.map((loginButton) => (
