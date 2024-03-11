@@ -36,23 +36,19 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
           </div>
           <h2 className="text-xl font-bold mb-4">Login</h2>
           <form onSubmit={(event) => handleLogin(event)}>
-            {loginInput.map((loginInput) => (
-              <input
-                className="block w-full px-4 py-2 mb-4 border border-gray-300 rounded focus:outline-none focus:border-blue-500 border-gradient"
-                type={loginInput.text}
-                name={loginInput.name}
-                placeholder={loginInput.placeholder}
-                key={loginInput.id}
-                value={loginInput.name === 'username' ? username : password}
-                onChange={(e) => {
-                  if (loginInput.name === 'username') {
-                    setUsername(e.target.value);
-                  } else {
-                    setPassword(e.target.value);
-                  }
-                }}
-              />
-            ))}
+            <input
+              className="block w-full px-4 py-2 mb-4 border border-gray-300 rounded focus:outline-none focus:border-blue-500 border-gradient"
+              type="text"
+              name="Name"
+              placeholder="Username"
+            />
+            <input
+              className="block w-full px-4 py-2 mb-4 border border-gray-300 rounded focus:outline-none focus:border-blue-500 border-gradient"
+              type="password"
+              name="Password"
+              placeholder="Password"
+            />
+
             {loginButton.map((loginButton) => (
               <button
                 className="w-full px-4 py-2 mb-2 rounded gradient-button focus:outline-none"
