@@ -9,7 +9,7 @@ const getToken = () => {
   return token;
 }
 
-const verifyEmail = token  => {
+const verifyEmail = (token:string)  => {
   let body = {};
   http.put(`${url}user`, body, {
     headers: {
@@ -18,9 +18,9 @@ const verifyEmail = token  => {
     }
   }).then(res => {
     console.log(res);
+    window.location.href = '/'
   }).catch(e => {
     console.log(e);
-    
   });
 }
 
