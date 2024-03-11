@@ -6,6 +6,14 @@ import { Link } from 'react-router-dom';
 const LoginModal = ({ isOpen, onClose, onLogin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  
+  const logIn = () => {
+    
+  };
+
+  const SignUp = () => {
+
+  };
 
   const handleLogin = (event) => {
     event.preventDefault(); // Prevent form submission
@@ -13,7 +21,11 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
     if (!username || !password) {
       alert('Both fields are required!');
       return;
+    } else {
+      logIn();
+      signUp();
     }
+
 
     onClose(); // Close the modal
     onLogin(); // Perform login action
