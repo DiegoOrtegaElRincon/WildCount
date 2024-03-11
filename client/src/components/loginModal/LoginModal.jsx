@@ -2,27 +2,28 @@ import React, { useState } from 'react';
 import './LoginModal.scss';
 import { loginInput, loginButton } from '../../constants';
 import { Link } from 'react-router-dom';
+import UsersService from '../../services/user.service';
 
 const LoginModal = ({ isOpen, onClose, onLogin }) => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   
-  const logIn = () => {
-    
+  const signIn = () => {
+    UsersService.signIn(password, email);
   };
 
-  const SignUp = () => {
-
+  const signUp = () => {
+    UsersService.signUp(password, email);
   };
 
   const handleLogin = (event) => {
     event.preventDefault(); // Prevent form submission
     // Validation logic
-    if (!username || !password) {
+    if (!email || !password) {
       alert('Both fields are required!');
       return;
     } else {
-      logIn();
+      signIn();
       signUp();
     }
 
@@ -50,8 +51,8 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
               className="block w-full px-4 py-2 mb-4 border border-gray-300 rounded focus:outline-none focus:border-blue-500 border-gradient"
               type="text"
               name="Name"
-              placeholder="Username"
-              onChange={(e)=>{setUsername(e.target)}}
+              placeholder="Email"
+              onChange={(e)=>{setEmail(e.target)}}
             />
             <input
               className="block w-full px-4 py-2 mb-4 border border-gray-300 rounded focus:outline-none focus:border-blue-500 border-gradient"

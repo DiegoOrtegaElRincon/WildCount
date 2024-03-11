@@ -1,4 +1,5 @@
-import { faMessage } from '@fortawesome/free-solid-svg-icons';
+
+import {message} from 'antd';
 import http from './http-common';
 
 const url = '/auth/v1/';
@@ -9,7 +10,7 @@ const getToken = () => {
   return token;
 }
 
-const verifyEmail = (token:string)  => {
+const verifyEmail = token  => {
   let body = {};
   http.put(`${url}user`, body, {
     headers: {
@@ -18,7 +19,6 @@ const verifyEmail = (token:string)  => {
     }
   }).then(res => {
     console.log(res);
-    window.location.href = '/'
   }).catch(e => {
     console.log(e);
   });
