@@ -1,4 +1,3 @@
-
 import {message} from 'antd';
 import http from './http-common';
 
@@ -17,10 +16,11 @@ const verifyEmail = token  => {
       ...http.defaults.headers.common,
       Authorization: `Bearer ${token}`
     }
-  }).then(res => {
-    console.log(res);
-  }).catch(e => {
-    console.log(e);
+  }).then(() => {
+    message.success('Verified successfully.');
+    window.location.href = '/';
+  }).catch(() => {
+    message.error('Verification not possible, invalid key.');
   });
 }
 
@@ -29,15 +29,23 @@ const signUp = (password:string, email:string) => {
     "email": email,
     "password": password
   };
-  http.post(`${url}signup`, body);
+  http.post(`${url}signup`, body).then(() => {
+    message.success('Registered successfully.');
+  }).catch(() => {
+    message.error('Invalid email');
+  });
 }
 
-const signIn = (password:string, email:string) => {
+const signIn = (password:string, email:string, onLogin:Function) => {
   let body = {
     "email": email,
     "password": password
   };
-  http.post(`${url}signin`, body);
+  http.post(`${url}token?grant_type=${password}`, body).then(() => {
+    onLogin();
+  }).catch(() => {
+    message.error('Invalid email or password');
+  });
 }
 
 const loggedUser = () => {

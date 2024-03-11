@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './LoginModal.scss';
-import { loginInput, loginButton } from '../../constants';
 import { Link } from 'react-router-dom';
 import UsersService from '../../services/user.service';
 
@@ -9,7 +8,7 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
   const [password, setPassword] = useState('');
   
   const signIn = () => {
-    UsersService.signIn(password, email);
+    UsersService.signIn(password, email, onLogin);
   };
 
   const signUp = () => {
@@ -29,7 +28,6 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
 
 
     onClose(); // Close the modal
-    onLogin(); // Perform login action
   };
 
   const handleGuest = () => {
@@ -52,24 +50,27 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
               type="text"
               name="Name"
               placeholder="Email"
-              onChange={(e)=>{setEmail(e.target)}}
+              onChange={(e)=>{setEmail(e.target.value)}}
             />
             <input
               className="block w-full px-4 py-2 mb-4 border border-gray-300 rounded focus:outline-none focus:border-blue-500 border-gradient"
               type="password"
               name="Password"
               placeholder="Password"
-              onChange={(e)=>{setPassword(e.target)}}
+              onChange={(e)=>{setPassword(e.target.value)}}
             />
-            {loginButton.map((loginButton) => (
               <button
                 className="w-full px-4 py-2 mb-2 rounded gradient-button focus:outline-none"
-                key={loginButton.id}
                 type="submit"
               >
-                {loginButton.text}
+                Login
               </button>
-            ))}
+              <button
+                className="w-full px-4 py-2 mb-2 rounded gradient-button focus:outline-none"
+                type="submit"
+              >
+                Register
+              </button>
           </form>
           <div className="text-sm">
             <button onClick={handleGuest} to="/home" className="text-blue-500">Continue as Guest</button> |
