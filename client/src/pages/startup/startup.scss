@@ -10,7 +10,7 @@
     }
 }
 
-@keyframes moveRightAnimation {
+@keyframes leftLineAnimation {
     from {
         left: 0
     }
@@ -20,7 +20,7 @@
     }
 }
 
-@keyframes moveLeftAnimation {
+@keyframes rightLineAnimation {
     from {
         right: 0;
     }
@@ -34,14 +34,14 @@
     animation: rotateAnimation 1s linear forwards;
 }
 
-.move-right-animation {
+.left-line-animation {
     position: absolute;
-    animation: moveRightAnimation 1s linear forwards;
+    animation: LeftLineAnimation 1s linear forwards;
 }
 
-.move-left-animation {
+.right-line-animation {
     position: absolute;
-    animation: moveLeftAnimation 1s linear forwards;
+    animation: rightLineAnimation 1s linear forwards;
 }
 
 body {

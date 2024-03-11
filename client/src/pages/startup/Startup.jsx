@@ -11,9 +11,9 @@ const Startup = () => {
         const middleCircle = document.getElementById('middle-circle');
         middleCircle.classList.add('rotate-animation'); // Add keyframe animation class
         const leftLine = document.getElementById('left-line');
-        leftLine.classList.add('move-right-animation'); // Add keyframe animation class
+        leftLine.classList.add('left-line-animation'); // Add keyframe animation class
         const rightLine = document.getElementById('right-line');
-        rightLine.classList.add('move-left-animation'); // Add keyframe animation class
+        rightLine.classList.add('right-line-animation'); // Add keyframe animation class
 
         setTimeout(() => {
             window.location.href = '/home'; // Redirect to homepage after animation
