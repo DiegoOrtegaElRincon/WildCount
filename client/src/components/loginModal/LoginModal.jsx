@@ -9,7 +9,6 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
 
   const handleLogin = (event) => {
     event.preventDefault(); // Prevent form submission
-
     // Validation logic
     if (!username || !password) {
       alert('Both fields are required!');
@@ -25,7 +24,6 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
     onLogin();
   };
 
-
   return (
     <div className={`${isOpen ? 'block' : 'hidden'} fixed inset-0 bg-gray-500 bg-opacity-75 overflow-y-auto z-50`}>
       <div className="flex justify-center items-center h-screen">
@@ -36,23 +34,20 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
           </div>
           <h2 className="text-xl font-bold mb-4">Login</h2>
           <form onSubmit={(event) => handleLogin(event)}>
-            {loginInput.map((loginInput) => (
-              <input
-                className="block w-full px-4 py-2 mb-4 border border-gray-300 rounded focus:outline-none focus:border-blue-500 border-gradient"
-                type={loginInput.text}
-                name={loginInput.name}
-                placeholder={loginInput.placeholder}
-                key={loginInput.id}
-                value={loginInput.name === 'username' ? username : password}
-                onChange={(e) => {
-                  if (loginInput.name === 'username') {
-                    setUsername(e.target.value);
-                  } else {
-                    setPassword(e.target.value);
-                  }
-                }}
-              />
-            ))}
+          <input
+              className="block w-full px-4 py-2 mb-4 border border-gray-300 rounded focus:outline-none focus:border-blue-500 border-gradient"
+              type="text"
+              name="Name"
+              placeholder="Username"
+              onChange={(e)=>{setUsername(e.target)}}
+            />
+            <input
+              className="block w-full px-4 py-2 mb-4 border border-gray-300 rounded focus:outline-none focus:border-blue-500 border-gradient"
+              type="password"
+              name="Password"
+              placeholder="Password"
+              onChange={(e)=>{setPassword(e.target)}}
+            />
             {loginButton.map((loginButton) => (
               <button
                 className="w-full px-4 py-2 mb-2 rounded gradient-button focus:outline-none"
