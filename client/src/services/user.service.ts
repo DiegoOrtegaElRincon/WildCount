@@ -1,3 +1,4 @@
+import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import http from './http-common';
 
 const url = '/auth/v1/';
@@ -15,6 +16,11 @@ const verifyEmail = token  => {
       ...http.defaults.headers.common,
       Authorization: `Bearer ${token}`
     }
+  }).then(res => {
+    console.log(res);
+  }).catch(e => {
+    console.log(e);
+    
   });
 }
 
