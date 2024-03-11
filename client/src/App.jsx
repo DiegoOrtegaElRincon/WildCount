@@ -4,7 +4,7 @@ import { Layout } from './components'
 import './App.css'
 
 function App() {
-  return ( 
+  return (
     <Router>
       <Routes>
         <Route path='/' element={<Startup />} />
