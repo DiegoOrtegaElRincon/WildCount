@@ -51,10 +51,12 @@ export const loginInput = [
 export const loginButton = [
     {
         id: "Login",
-        text: "Login"
+        text: "Login",
+        value: "Login"
     },
     {
         id: "Register",
-        text: "Register"
+        text: "Register",
+        value: "Register"
     }
 ]

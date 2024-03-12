@@ -4,10 +4,17 @@ import http from './http-common';
 const url = '/auth/v1/';
 
 const getToken = () => {
-  let cookie = document.cookie.split('; ').find(cookie => cookie.startsWith('sb-access-token='))?.split('=')[1];
+  let cookie = document.cookie.split('; ').find(cookie => cookie.startsWith('access-token'))?.split('')[1];
   let token = `Bearer ${cookie}`;
   return token;
 }
+
+const setCookieToken = (value, seconds) => {
+  const expirationDate:Date = new Date();
+  expirationDate.setTime(expirationDate.getTime() + (seconds * 1000));
+  const cookieValue:string = `access_token=${encodeURIComponent(value)}; expires=${expirationDate.toUTCString()}; path=/`;
+  document.cookie = cookieValue;
+};
 
 const verifyEmail = token  => {
   let body = {};
@@ -41,8 +48,11 @@ const signIn = (password:string, email:string, onLogin:Function) => {
     "email": email,
     "password": password
   };
-  http.post(`${url}token?grant_type=${password}`, body).then(() => {
+  http.post(`${url}token?grant_type=${password}`, body).then((res) => {
+    const token = res.data;
+    setCookieToken(token.access_token, token.expires_in);
     onLogin();
+    console.log(getToken());
   }).catch(() => {
     message.error('Invalid email or password');
   });
