@@ -8,7 +8,6 @@ const AnimalsComponent = () => {
   useEffect(() => {
     AnimalService.getAnimals()
       .then((data) => {
-        console.log(data)
         setAnimals(data); // Assuming the response structure is { data: [...animals] }
       })
       .catch((error) => {
