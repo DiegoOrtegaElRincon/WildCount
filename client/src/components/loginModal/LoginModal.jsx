@@ -8,7 +8,7 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
   const [password, setPassword] = useState('');
 
   const signIn = () => {
-    UsersService.signIn(password, email, onLogin);
+    UsersService.signIn(password, email, onLogin, onClose);
   };
 
   const signUp = () => {
@@ -18,6 +18,7 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
   const handleLogin = (event) => {
     event.preventDefault(); // Prevent form submission
     // Validation logic
+
     if (!email || !password) {
       alert('Both fields are required!');
       return;
@@ -25,8 +26,6 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
       const submitButton = event.nativeEvent.submitter;
       submitButton.value === 'Login' ? signIn() : signUp();
     };
-
-    onClose(); // Close the modal
   };
 
   const handleGuest = () => {
