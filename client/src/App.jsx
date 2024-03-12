@@ -16,6 +16,7 @@ function App() {
               <Route path='/extinct' element={<Extinct />} />
               <Route path='/continents' element={<Continents />} />
               <Route path='/regions' element={<Regions />} />
+              <Route path='/regions/:continentId' element={<Regions />} />
               <Route path='/animals' element={<Animals />} />
               <Route path='/user' element={<User />} />
             </Routes>

@@ -26,9 +26,21 @@ const getRegionById = (id) => {
         });
 };
 
+const getRegionsByContinentId = (continentId) => {
+    return http.get(`${url}?continent_id=eq.${continentId}`)
+        .then(response => {
+            return response.data;
+        })
+        .catch(error => {
+            console.error("Error fetching regions by continent ID:", error);
+            throw error;
+        });
+};
+
 const RegionService = {
     getRegions,
-    getRegionById
+    getRegionById,
+    getRegionsByContinentId
 };
 
 
