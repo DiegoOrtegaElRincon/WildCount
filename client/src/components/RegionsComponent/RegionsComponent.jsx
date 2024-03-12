@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom'; // Add this import
 import RegionService from '../../services/region.service';
 import ContinentService from '../../services/continent.service';
+import { useNavigate } from 'react-router-dom';
 // Mock data for continents - replace with actual data source if available
 const continents = [
     { id: '1', name: 'America' },
@@ -16,27 +18,44 @@ const RegionsComponent = () => {
     const [regions, setRegions] = useState([]);
     const [selectedContinentId, setSelectedContinentId] = useState('');
     const [error, setError] = useState('');
+    const { continentId } = useParams();
 
     useEffect(() => {
-        RegionService.getRegions()
-            .then(data => {
-                console.log(data)
-                setRegions(data);
-            })
-            .catch(error => {
+        if (continentId) {
+            setSelectedContinentId(continentId);
+        }
+    }, [continentId]);  
+
+
+    useEffect(() => {
+        const fetchRegions = async () => {
+            try {
+                let response;
+                if (selectedContinentId) {
+                    response = await RegionService.getRegionsByContinentId(selectedContinentId);
+                } else {
+                    response = await RegionService.getRegions();
+                }
+                setRegions(response);
+                console.log(response)
+            } catch (error) {
                 console.error("Error fetching regions:", error);
                 setError('Failed to fetch regions');
-            });
-    }, []);
+            }
+        };
+    
+        fetchRegions();
+    }, [selectedContinentId]);
+    
+    
+    const navigate = useNavigate();
 
     const handleContinentChange = (event) => {
         setSelectedContinentId(event.target.value);
+        navigate(`/regions/${event.target.value}`); // Update the URL
     };
     
-    const filteredRegions = selectedContinentId
-    ? regions.filter(region => String(region.continent_id) === String(selectedContinentId))
-    : regions;
-
+    const displayRegions = regions || [];
 
     return (
         <div>
@@ -51,10 +70,10 @@ const RegionsComponent = () => {
                 </select>
             </div>
             {error && <p>Error: {error}</p>}
-            {!error && filteredRegions.length === 0 && <p>No regions found.</p>}
-            {filteredRegions.length > 0 && (
+            {!error && displayRegions.length === 0 && <p>No regions found.</p>}
+            {displayRegions.length > 0 && (
                 <ul>
-                    {filteredRegions.map((region) => (
+                    {displayRegions.map((region) => (
                         <li key={region.id}>{region.region_name}</li> // Adjust according to your data structure
                     ))}
                 </ul>

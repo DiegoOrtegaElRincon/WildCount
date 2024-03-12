@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import ContinentService from '../../services/continent.service'; // Adjust the path as necessary
+import ContinentService from '../../services/continent.service';
+import { Link } from 'react-router-dom'; // Import Link
 
 const ContinentsComponent = () => {
   const [continents, setContinents] = useState([]);
@@ -7,11 +8,11 @@ const ContinentsComponent = () => {
 
   useEffect(() => {
     ContinentService.getContinents()
-      .then((data) => {
+      .then(data => {
         console.log(data)
         setContinents(data); // Assuming the response structure directly provides the continents array
       })
-      .catch((error) => {
+      .catch(error => {
         console.error("Error fetching continents:", error);
         setError('Failed to fetch continents');
       });
@@ -25,7 +26,9 @@ const ContinentsComponent = () => {
       {continents.length > 0 && (
         <ul>
           {continents.map((continent) => (
-            <li key={continent.id}>{continent.continent_name}</li> // Adjust according to your actual data structure
+            <li key={continent.id}>
+              <Link to={`/regions/${continent.id}`}>{continent.continent_name}</Link>
+            </li>
           ))}
         </ul>
       )}
