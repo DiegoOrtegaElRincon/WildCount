@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import './LoginModal.scss';
 import { Link } from 'react-router-dom';
 import UsersService from '../../services/user.service';
-import { loginButton } from '../../constants/index';
 
 const LoginModal = ({ isOpen, onClose, onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const signIn = () => {
-    UsersService.signIn(password, email, onLogin);
+    UsersService.signIn(password, email, onLogin, onClose);
   };
 
   const signUp = () => {
@@ -19,6 +18,7 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
   const handleLogin = (event) => {
     event.preventDefault(); // Prevent form submission
     // Validation logic
+
     if (!email || !password) {
       alert('Both fields are required!');
       return;
@@ -26,8 +26,6 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
       const submitButton = event.nativeEvent.submitter;
       submitButton.value === 'Login' ? signIn() : signUp();
     };
-
-    onClose(); // Close the modal
   };
 
   const handleGuest = () => {
@@ -59,18 +57,16 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
               placeholder="Password"
               onChange={(e) => { setPassword(e.target.value) }}
             />
-            <button
-              className="w-full px-4 py-2 mb-2 rounded gradient-button focus:outline-none"
-              type="submit"
-            >
-              Login
-            </button>
-            <button
-              className="w-full px-4 py-2 mb-2 rounded gradient-button focus:outline-none"
-              type="submit"
-            >
-              Register
-            </button>
+           {loginButton.map((loginButton) => (
+              <button
+                className={loginButton.className}
+                key={loginButton.id}
+                type="submit"
+                value={loginButton.value}
+              >
+                {loginButton.text}
+              </button>
+            ))}
           </form>
           <div className="text-sm">
             <button onClick={handleGuest} to="/home" className="text-blue-500">Continue as Guest</button> |
