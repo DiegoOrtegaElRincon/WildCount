@@ -44,4 +44,4 @@ export const loginButton = [
         text: "Register",
         value: "Register"
     }
-];s
+];
