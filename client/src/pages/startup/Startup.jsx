@@ -71,7 +71,6 @@ const Startup = () => {
 
                 <LoginModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onLogin={handleLogin} />
             </div>
-
         </div>
     );
 };
