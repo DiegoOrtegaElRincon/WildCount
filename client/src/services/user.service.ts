@@ -7,7 +7,7 @@ const getToken = () => {
   let cookie = document.cookie.split('; ').find(cookie => cookie.startsWith('access-token'))?.split('')[1];
   let token = `Bearer ${cookie}`;
   return token;
-}
+};
 
 const setCookieToken = (value, seconds) => {
   const expirationDate:Date = new Date();
@@ -29,7 +29,7 @@ const verifyEmail = token  => {
   }).catch(() => {
     message.error('Verification not possible, invalid key.');
   });
-}
+};
 
 const signUp = (password:string, email:string) => {
   let body = {
@@ -37,11 +37,11 @@ const signUp = (password:string, email:string) => {
     "password": password
   };
   http.post(`${url}signup`, body).then(() => {
-    message.success('Registered successfully.');
+    message.success('Registered successfully. You will receive a verification email at that email address.');
   }).catch(() => {
     message.error('Invalid email');
   });
-}
+};
 
 const signIn = (password:string, email:string, onLogin:Function) => {
   let body = {
@@ -52,11 +52,10 @@ const signIn = (password:string, email:string, onLogin:Function) => {
     const token = res.data;
     setCookieToken(token.access_token, token.expires_in);
     onLogin();
-    console.log(getToken());
   }).catch(() => {
     message.error('Invalid email or password');
   });
-}
+};
 
 const loggedUser = () => {
   http.get(`${url}user`, {
@@ -65,11 +64,11 @@ const loggedUser = () => {
       Authorization: getToken()
     }
   });
-}
+};
 
 const signOut = () => {
   //Delete the cookie
-}
+};
 
 // const deleteAccount = () => {
   

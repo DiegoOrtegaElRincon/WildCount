@@ -33,21 +33,6 @@ export const navLinks = [
     }
 ];
 
-export const loginInput = [
-    {
-        id: "Name",
-        type: "text",
-        name: "name",
-        placeholder: "Username",
-    },
-    {
-        id: "Password",
-        type: "password",
-        name: "password",
-        placeholder: "Password",
-    }
-]
-
 export const loginButton = [
     {
         id: "Login",
@@ -59,4 +44,4 @@ export const loginButton = [
         text: "Register",
         value: "Register"
     }
-]
+];s
