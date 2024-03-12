@@ -51,6 +51,8 @@ const signIn = (password:string, email:string, onLogin:Function) => {
   http.post(`${url}token?grant_type=${password}`, body).then((res) => {
     const token = res.data;
     setCookieToken(token.access_token, token.expires_in);
+    console.log(getToken());
+    
     onLogin();
   }).catch(() => {
     message.error('Invalid email or password');
