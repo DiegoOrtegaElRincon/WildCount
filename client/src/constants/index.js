@@ -14,9 +14,9 @@ export const navLinks = [
         icon: faHippo
     },
     {
-        id: "Regions",
-        title: "Regions",
-        link: "/regions",
+        id: "Continents",
+        title: "Continents",
+        link: "/continents",
         icon: faGlobe
     },
     {
@@ -31,4 +31,3 @@ export const navLinks = [
         link: "/user",
         icon: faUser
     }
-];

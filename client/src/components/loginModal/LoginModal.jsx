@@ -1,21 +1,33 @@
 import React, { useState } from 'react';
 import './LoginModal.scss';
 import { Link } from 'react-router-dom';
+import UsersService from '../../services/user.service';
+import { loginButton } from '../../constants/index';
 
 const LoginModal = ({ isOpen, onClose, onLogin }) => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const signIn = () => {
+    UsersService.signIn(password, email, onLogin);
+  };
+
+  const signUp = () => {
+    UsersService.signUp(password, email);
+  };
 
   const handleLogin = (event) => {
     event.preventDefault(); // Prevent form submission
     // Validation logic
-    if (!username || !password) {
+    if (!email || !password) {
       alert('Both fields are required!');
       return;
-    }
+    } else {
+      const submitButton = event.nativeEvent.submitter;
+      submitButton.value === 'Login' ? signIn() : signUp();
+    };
 
     onClose(); // Close the modal
-    onLogin(); // Perform login action
   };
 
   const handleGuest = () => {
@@ -37,15 +49,15 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
               className="block w-full px-4 py-2 mb-4 border border-gray-300 rounded focus:outline-none focus:border-blue-500 border-gradient"
               type="text"
               name="Name"
-              placeholder="Username"
-              onChange={(e) => { setUsername(e.target) }}
+              placeholder="Email"
+              onChange={(e) => { setEmail(e.target.value) }}
             />
             <input
               className="block w-full px-4 py-2 mb-4 border border-gray-300 rounded focus:outline-none focus:border-blue-500 border-gradient"
               type="password"
               name="Password"
               placeholder="Password"
-              onChange={(e) => { setPassword(e.target) }}
+              onChange={(e) => { setPassword(e.target.value) }}
             />
             <button
               className="w-full px-4 py-2 mb-2 rounded gradient-button focus:outline-none"

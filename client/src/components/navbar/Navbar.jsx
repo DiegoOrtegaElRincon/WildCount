@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Navbar = () => {
     return (
-        <nav className='fixed bottom-0 lg:right-0 bg-[#454545] text-white w-full lg:w-auto lg:h-full flex justify-evenly lg:flex-col'>
+        <nav className='fixed bottom-0 lg:right-0 bg-[#454545] text-white w-full lg:w-auto lg:h-full flex justify-evenly items-center lg:flex-col mt-[200px]'>
             {navLinks.map((navLink) => (
                 <NavLink
                     to={navLink.link}

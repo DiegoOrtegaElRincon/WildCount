@@ -1,9 +1,4 @@
 import axios, { AxiosRequestConfig } from 'axios';
-// dotenv import is no longer needed, as Vite handles .env variables differently
-// import dotenv from 'dotenv';
-// dotenv.config();
-
-// Access environment variable with import.meta.env.VITE_API_KEY
 const APIKEY = import.meta.env.VITE_API_KEY;
 
 interface InternalAxiosRequestConfig extends AxiosRequestConfig {
@@ -15,7 +10,7 @@ const api = axios.create({
   headers: {
     "Content-type": "application/json",
     Accept: "application/json",
-    apikey: APIKEY, // Make sure this is correctly populated
+    apikey: APIKEY,
   }
 });
 

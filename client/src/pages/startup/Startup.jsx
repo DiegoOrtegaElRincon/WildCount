@@ -1,11 +1,31 @@
 // Startup.jsx
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import LoginModal from '../../components/loginModal/LoginModal';
 import './startup.scss';
+import UsersService from '../../services/user.service';
 
 const Startup = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const getUrlToken = () => {
+        const currentUrl = window.location.href;
+        const fragment = currentUrl.split('#');
+        const accessToken = new URLSearchParams(fragment[1]).get('access_token');
+
+        return accessToken;
+    };
+
+    const verifyEmail = () => {
+        let token = getUrlToken() || false;
+        if (token != false) {
+            UsersService.verifyEmail(token);
+        }
+    };
+
+    useEffect(() => {
+        verifyEmail();
+    }, []);
 
     const handleLogin = () => {
         const middleCircle = document.getElementById('middle-circle');
@@ -21,7 +41,7 @@ const Startup = () => {
     };
 
     return (
-        <div className='h-[100vh] flex items-center justify-center'>
+        <div className='h-[100vh] flex items-center justify-center overflow-hidden'>
             <div className='h-[15rem] relative'>
                 {/* Bottom line on the left side */}
                 <span id='left-line' className='bg-black h-[2rem] w-[50vw] absolute top-[20%] -translate-y-1/2 left-0'></span>
