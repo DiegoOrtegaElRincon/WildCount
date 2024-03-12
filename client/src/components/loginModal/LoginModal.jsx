@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './LoginModal.scss';
 import { Link } from 'react-router-dom';
 import UsersService from '../../services/user.service';
+import { loginButton } from '../../constants';
 
 const LoginModal = ({ isOpen, onClose, onLogin }) => {
   const [email, setEmail] = useState('');

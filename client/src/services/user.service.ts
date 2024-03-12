@@ -1,5 +1,5 @@
 import { message } from 'antd';
-import http from './http-common';
+import http from './http-common'
 
 const url = '/auth/v1/';
 
