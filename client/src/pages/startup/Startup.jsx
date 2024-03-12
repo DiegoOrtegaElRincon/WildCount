@@ -41,7 +41,7 @@ const Startup = () => {
     };
 
     return (
-        <div className='h-[100vh] flex items-center justify-center'>
+        <div className='h-[100vh] flex items-center justify-center overflow-hidden'>
             <div className='h-[15rem] relative'>
                 {/* Bottom line on the left side */}
                 <span id='left-line' className='bg-black h-[2rem] w-[50vw] absolute top-[20%] -translate-y-1/2 left-0'></span>
