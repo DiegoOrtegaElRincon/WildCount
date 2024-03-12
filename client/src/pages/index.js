@@ -4,7 +4,6 @@ import Home from './home/Home'
 import Regions from './regions/Regions'
 import User from './user/User'
 import Startup from './startup/Startup'
-import Continents from './continents/Continents'
 
 export {
     Animals,
@@ -13,5 +12,4 @@ export {
     Regions,
     User,
     Startup,
-    Continents
 }
