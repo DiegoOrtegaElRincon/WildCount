@@ -31,3 +31,4 @@ export const navLinks = [
         link: "/user",
         icon: faUser
     }
+];
