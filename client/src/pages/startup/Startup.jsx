@@ -44,15 +44,30 @@ const Startup = () => {
         <div className='h-[100vh] flex items-center justify-center overflow-hidden'>
             <div className='h-[15rem] relative'>
                 {/* Bottom line on the left side */}
-                <span id='left-line' className='bg-black h-[2rem] w-[50vw] absolute top-[20%] -translate-y-1/2 left-0'></span>
-                <div id='middle-circle' className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-10'>
+                <span
+                    id="left-line"
+                    className="gradient-bg h-[2rem] w-[50vw] absolute top-[20%] -translate-y-1/2 left-0"
+                ></span>
+                <div
+                    id="middle-circle"
+                    className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-10"
+                >
                     {/* Circle in the middle */}
-                    <span className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-white h-[15rem] w-[15rem] rounded-full border-[12px] border-black cursor-pointer' onClick={() => setIsModalOpen(true)}></span>
+                    <span
+                        className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2  h-[15rem] w-[15rem] border-gradient cursor-pointer"
+                        onClick={() => setIsModalOpen(true)}
+                    ></span>
                     {/* Line in the circle in the middle */}
-                    <span className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-black h-[2.4rem] w-[14.8rem] -rotate-[40deg] cursor-pointer' onClick={() => setIsModalOpen(true)}></span>
+                    <span
+                        className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 gradient-bg h-[2.4rem] w-[13.55rem] rounded-md -rotate-[219deg] cursor-pointer z-[9999]"
+                        onClick={() => setIsModalOpen(true)}
+                    ></span>
                 </div>
                 {/* Top line on the right side */}
-                <span id='right-line' className='bg-black h-[2rem] w-[50vw] absolute top-[80%] -translate-y-1/2 right-0'></span>
+                <span
+                    id="right-line"
+                    className="gradient-bg h-[2rem] w-[50vw] absolute top-[80%] -translate-y-1/2 right-0"
+                ></span>
 
                 <LoginModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onLogin={handleLogin} />
             </div>
