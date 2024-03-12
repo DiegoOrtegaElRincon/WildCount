@@ -57,7 +57,16 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
               placeholder="Password"
               onChange={(e) => { setPassword(e.target.value) }}
             />
-    
+           {loginButton.map((loginButton) => (
+              <button
+                className={loginButton.className}
+                key={loginButton.id}
+                type="submit"
+                value={loginButton.value}
+              >
+                {loginButton.text}
+              </button>
+            ))}
           </form>
           <div className="text-sm">
             <button onClick={handleGuest} to="/home" className="text-blue-500">Continue as Guest</button> |
