@@ -44,6 +44,18 @@
     animation: moveLeftAnimation 1s linear forwards;
 }
 
-body {
-    overflow: hidden;
-}
+.gradient-bg {
+    background-image: linear-gradient(to right, #18c9da, #a6ff86);
+  }
+  
+  .border-gradient {
+    border-width: 12px;
+    background-image: linear-gradient(white, white),
+      linear-gradient(to top, #a6ff86, #18c9da);
+    border-radius: 9999px;
+    border: transparent;
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    padding: 12px;
+    z-index: 9999;
+  }

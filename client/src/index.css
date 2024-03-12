@@ -5,3 +5,7 @@
 .active-link {
     color: #cccccc;
 }
+
+body::-webkit-scrollbar {
+    display: none;
+}
