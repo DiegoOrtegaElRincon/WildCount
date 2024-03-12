@@ -1,9 +1,10 @@
 import React from 'react'
+import RegionsComponent from '../../components/RegionsComponent/RegionsComponent'
 
 const Regions = () => {
   return (
     <div>
-      Regions
+      <RegionsComponent/>
     </div>
   )
 }
