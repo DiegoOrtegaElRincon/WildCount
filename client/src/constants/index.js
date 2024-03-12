@@ -32,16 +32,3 @@ export const navLinks = [
         icon: faUser
     }
 ];
-
-export const loginButton = [
-    {
-        id: "Login",
-        text: "Login",
-        value: "Login"
-    },
-    {
-        id: "Register",
-        text: "Register",
-        value: "Register"
-    }
-];s

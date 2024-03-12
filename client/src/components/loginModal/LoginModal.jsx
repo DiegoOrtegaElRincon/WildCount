@@ -6,7 +6,7 @@ import UsersService from '../../services/user.service';
 const LoginModal = ({ isOpen, onClose, onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
+
   const signIn = () => {
     UsersService.signIn(password, email, onLogin);
   };
@@ -49,25 +49,27 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
               type="text"
               name="Name"
               placeholder="Email"
-              onChange={(e)=>{setEmail(e.target.value)}}
+              onChange={(e) => { setEmail(e.target.value) }}
             />
             <input
               className="block w-full px-4 py-2 mb-4 border border-gray-300 rounded focus:outline-none focus:border-blue-500 border-gradient"
               type="password"
               name="Password"
               placeholder="Password"
-              onChange={(e)=>{setPassword(e.target.value)}}
+              onChange={(e) => { setPassword(e.target.value) }}
             />
-            {loginButton.map((loginButton) => (
-              <button
-                className="w-full px-4 py-2 mb-2 rounded gradient-button focus:outline-none"
-                key={loginButton.id}
-                type="submit"
-                value={loginButton.value}
-              >
-                {loginButton.text}
-              </button>
-            ))}
+            <button
+              className="w-full px-4 py-2 mb-2 rounded gradient-button focus:outline-none"
+              type="submit"
+            >
+              Login
+            </button>
+            <button
+              className="w-full px-4 py-2 mb-2 rounded gradient-button focus:outline-none"
+              type="submit"
+            >
+              Register
+            </button>
           </form>
           <div className="text-sm">
             <button onClick={handleGuest} to="/home" className="text-blue-500">Continue as Guest</button> |
