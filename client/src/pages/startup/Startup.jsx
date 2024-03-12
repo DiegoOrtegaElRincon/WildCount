@@ -1,9 +1,9 @@
 // Startup.jsx
 
-import React, { useEffect, useState } from 'react';
-import LoginModal from '../../components/loginModal/LoginModal';
-import './startup.scss';
-import UsersService from '../../services/user.service';
+import React, { useEffect, useState } from "react";
+import LoginModal from "../../components/loginModal/LoginModal";
+import "./startup.scss";
+import UsersService from "../../services/user.service";
 
 const Startup = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -56,8 +56,22 @@ const Startup = () => {
 
                 <LoginModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onLogin={handleLogin} />
             </div>
+
         </div>
-    );
+        {/* Top line on the right side */}
+        <span
+          id="right-line"
+          className="gradient-bg h-[2rem] w-[50vw] absolute top-[80%] -translate-y-1/2 right-0"
+        ></span>
+
+        <LoginModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onLogin={handleLogin}
+        />
+      </div>
+    </div>
+  );
 };
 
 export default Startup;
