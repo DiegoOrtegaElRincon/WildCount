@@ -1,42 +1,42 @@
 // startup.scss
 
 @keyframes rotateAnimation {
-    from {
-        transform: rotate(0deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
 
-    to {
-        transform: rotate(180deg);
-    }
+  to {
+    transform: rotate(180deg);
+  }
 }
 
 @keyframes moveRightAnimation {
-    from {
-        left: 0
-    }
+  from {
+    left: 0;
+  }
 
-    to {
-        left: 60px;
-    }
+  to {
+    left: 60px;
+  }
 }
 
 @keyframes moveLeftAnimation {
-    from {
-        right: 0;
-    }
+  from {
+    right: 0;
+  }
 
-    to {
-        right: 60px;
-    }
+  to {
+    right: 60px;
+  }
 }
 
 .rotate-animation {
-    animation: rotateAnimation 1s linear forwards;
+  animation: rotateAnimation 1s linear forwards;
 }
 
 .move-right-animation {
-    position: absolute;
-    animation: moveRightAnimation 1s linear forwards;
+  position: absolute;
+  animation: moveRightAnimation 1s linear forwards;
 }
 
 .move-left-animation {

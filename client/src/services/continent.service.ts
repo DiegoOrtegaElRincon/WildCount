@@ -1,8 +1,8 @@
 import http from './http-common';
 
-const url = "rest/v1/animals"
+const url = "rest/v1/continents";
 
-const getAnimals = () => {
+const getContinents = () => {
     return http.get(url)
         .then(response => {
             return response.data;
@@ -11,9 +11,9 @@ const getAnimals = () => {
             console.error("Error fetching data: ", error);
             throw error; // Rethrow the error so the calling component can catch it
         });
-}
+};
 
-const getAnimalById = (id) => {
+const getContinentById = (id) => {
     return http.get(`${url}?id.eq=${id}`)
         .then(response => {
             return response.data;
@@ -22,11 +22,11 @@ const getAnimalById = (id) => {
             console.error("Error fetching data: ", error);
             throw error; // Rethrow the error so the calling component can catch it
         });
-}
-
-const AnimalService = {
-    getAnimals,
-    getAnimalById
 };
 
-export default AnimalService;
+const ContinentService = {
+    getContinents,
+    getContinentById 
+};
+
+export default ContinentService;

@@ -1,32 +1,35 @@
+// src/services/region.service.js
+
 import http from './http-common';
 
-const url = "rest/v1/animals"
+const url = "rest/v1/regions";
 
-const getAnimals = () => {
+const getRegions = () => {
     return http.get(url)
         .then(response => {
             return response.data;
         })
         .catch(error => {
             console.error("Error fetching data: ", error);
-            throw error; // Rethrow the error so the calling component can catch it
+            throw error;
         });
-}
+};
 
-const getAnimalById = (id) => {
+const getRegionById = (id) => {
     return http.get(`${url}?id.eq=${id}`)
         .then(response => {
             return response.data;
         })
         .catch(error => {
             console.error("Error fetching data: ", error);
-            throw error; // Rethrow the error so the calling component can catch it
+            throw error;
         });
-}
-
-const AnimalService = {
-    getAnimals,
-    getAnimalById
 };
 
-export default AnimalService;
+const RegionService = {
+    getRegions,
+    getRegionById
+};
+
+
+export default RegionService;

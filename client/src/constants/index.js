@@ -14,9 +14,9 @@ export const navLinks = [
         icon: faHippo
     },
     {
-        id: "Regions",
-        title: "Regions",
-        link: "/regions",
+        id: "Continents",
+        title: "Continents",
+        link: "/continents",
         icon: faGlobe
     },
     {
@@ -30,18 +30,5 @@ export const navLinks = [
         title: "User",
         link: "/user",
         icon: faUser
-    }
-];
-
-export const loginButton = [
-    {
-        id: "Login",
-        text: "Login",
-        value: "Login"
-    },
-    {
-        id: "Register",
-        text: "Register",
-        value: "Register"
     }
 ];
