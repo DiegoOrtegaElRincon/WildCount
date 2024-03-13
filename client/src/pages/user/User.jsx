@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import LoginModal from "../../components/loginModal/LoginModal";
 import UsersAuthService from "../../services/user_auth.service";
 import { message } from "antd";
-import img from "../../assets/tom.myspace.jpeg";
 import "./user.scss";
 import UsersTokenService from "../../services/user_token.service";
 import UsersDataService from "../../services/user_data.service";
+import InputUpload from "../../components/InputUpload/InputUpload";
 
 const User = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -66,11 +66,7 @@ const User = () => {
     <div>
       {!isModalOpen && (
         <div className="flex flex-col items-center mt-40 mb-8">
-          <img
-            src={img} // Replace "profile-picture.jpg" with the path to your profile picture
-            alt="Profile Picture"
-            className="w-32 h-32 rounded mb-8"
-          />
+          <InputUpload/>
           <input
             type="text"
             placeholder="Name"
