@@ -13,7 +13,7 @@ interface Animal {
 
 // Simple modal component
 const AnimalModal = ({ animal, onClose }: { animal: Animal, onClose: () => void }) => {
-    if (!animal) return null; // If there's no animal, don't render anything
+    if (!animal) return null;
 
     return (
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0, 0, 0, 0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -48,11 +48,11 @@ const EndangeredComponent = () => {
     };
 
     return (
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', alignItems:'center' }}>
             {animals.map((animal, index) => (
                 <div key={index} style={{ width: '45%', margin: '2.5%', textAlign: 'center' }}>
                     <button style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }} onClick={() => handleAnimalClick(animal)}>
-                        <img src={animal.image || placeholder_image} alt={`Image of ${animal.name}`} style={{ width: '100%', maxHeight: '250px', objectFit: 'cover' }} />
+                        <img src={animal.image || placeholder_image} alt={`Image of ${animal.name}`} style={{ width: '250px', maxHeight: 'auto', objectFit: 'contain' }} />
                     </button>
                     <p><strong>Alive:</strong> {animal.amount_left}</p>
                 </div>
