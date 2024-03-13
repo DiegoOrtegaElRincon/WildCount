@@ -16,10 +16,10 @@ const AnimalModal = ({ animal, onClose }: { animal: Animal, onClose: () => void 
     if (!animal) return null;
 
     return (
-        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0, 0, 0, 0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <div style={{ background: 'white', padding: 20, borderRadius: 5, maxWidth: '80%', maxHeight: '80%', overflow: 'auto' }}>
-                <button onClick={onClose} style={{ float: 'right' }}>X</button>
-                <img src={animal.image || placeholder_image} alt={`Image of ${animal.name}`} style={{ maxWidth: '250px', maxHeight: '100%'}} />
+        <div className='fixed top-0 left-0 right-0 bottom-0 bg-[#00000005] flex justify-center items-center'>
+            <div className='bg-white p-5 rounded-[5px] max-w-[80%] max-h-[80%] overflow-auto'>
+                <button onClick={onClose} className='float-end'>X</button>
+                <img src={animal.image || placeholder_image} alt={`Image of ${animal.name}`} className='max-w-[250px] max-h-full' />
                 <h3>Name: {animal.name}</h3>
                 <p>Description: {animal.description}</p>
                 <p><strong>Alive:</strong> {animal.amount_left}</p>
@@ -48,15 +48,17 @@ const EndangeredComponent = () => {
     };
 
     return (
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', alignItems:'center' }}>
+        <div className='flex flex-wrap justify-around items-center pr-[75px]'>
+            <div className='grid grid-cols-3'>
             {animals.map((animal, index) => (
-                <div key={index} style={{ width: '45%', margin: '2.5%', textAlign: 'center' }}>
-                    <button style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }} onClick={() => handleAnimalClick(animal)}>
-                        <img src={animal.image || placeholder_image} alt={`Image of ${animal.name}`} style={{ width: '250px', maxHeight: 'auto', objectFit: 'contain' }} />
-                    </button>
-                    <p><strong>Alive:</strong> {animal.amount_left}</p>
-                </div>
+                <div key={index} className='flex flex-col'>
+                        <button className='bg-none border-none p-0 cursor-pointer' onClick={() => handleAnimalClick(animal)}>
+                            <img src={animal.image || placeholder_image} alt={`Image of ${animal.name}`} className='w-[250px] h-auto object-contain' />
+                        </button>
+                        <p><strong>Alive:</strong> {animal.amount_left}</p>
+                    </div>
             ))}
+            </div>
             {isModalOpen && <AnimalModal animal={selectedAnimal!} onClose={() => setIsModalOpen(false)} />}
         </div>
     );
