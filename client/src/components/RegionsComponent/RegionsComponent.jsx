@@ -58,11 +58,10 @@ const RegionsComponent = () => {
     const displayRegions = regions || [];
 
     return (
-        <div>
-            <h1>Regions</h1>
-            <div>
-                <label htmlFor="continent-select">Choose a continent:</label>
-                <select id="continent-select" onChange={handleContinentChange} value={selectedContinentId}>
+        <div className='p-4'>
+            <div className='flex flex-col pb-4'>
+                <label className='text-2xl pb-1' htmlFor="continent-select">Choose a continent:</label>
+                <select className='w-36' id="continent-select" onChange={handleContinentChange} value={selectedContinentId}>
                     <option value="">All Continents</option>
                     {continents.map((continent) => (
                         <option key={continent.id} value={continent.id}>{continent.name}</option>
@@ -74,7 +73,7 @@ const RegionsComponent = () => {
             {displayRegions.length > 0 && (
                 <ul>
                     {displayRegions.map((region) => (
-                        <li key={region.id}>{region.region_name}</li> // Adjust according to your data structure
+                        <li className='pb-1' key={region.id}>{region.region_name}</li> // Adjust according to your data structure
                     ))}
                 </ul>
             )}
