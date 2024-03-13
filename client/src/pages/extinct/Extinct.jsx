@@ -1,9 +1,10 @@
 import React from 'react'
+import EndangeredComponent from '../../components/EndangeredComponent/EndangeredComponent'
 
 const Extinct = () => {
   return (
     <div>
-      Near Extinct
+      <EndangeredComponent/>
     </div>
   )
 }
