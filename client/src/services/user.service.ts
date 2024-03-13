@@ -31,7 +31,9 @@ const verifyEmail = token => {
     }
   }).then(() => {
     message.success('Verified successfully.');
-    window.location.href = '/';
+    setTimeout(() => {
+      window.location.href = '/'; // Redirect to startupPage after message
+  }, 1000); // Adjust the delay to match your message duration
   }).catch(() => {
     message.error('Verification not possible, invalid key.');
   });
@@ -42,10 +44,25 @@ const signUp = (password: string, email: string) => {
     "email": email,
     "password": password
   };
-  http.post(`${url}signup`, body).then(() => {
+  http.post(`${url}signup`, body).then((res) => {
     message.success('Registered successfully. You will receive a verification email at that email address.');
+    createUserData(res.data);
   }).catch(() => {
     message.error('Invalid email');
+  });
+};
+
+const createUserData = (userData) => {
+  let body = {
+    user_id: userData.id,
+    phone: null,
+    image: null
+  };
+
+  http.post('rest/v1/user_data', body).then(() => {
+    console.log('User_data create successfully');
+  }).catch(err => {
+    console.log(err);
   });
 };
 
