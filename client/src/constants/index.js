@@ -37,11 +37,13 @@ export const loginButton = [
     {
         id: "Login",
         text: "Login",
-        value: "Login"
+        value: "Login",
+        className: "w-full px-4 py-2 mb-2 rounded gradient-button focus:outline-none"
     },
     {
         id: "Register",
         text: "Register",
-        value: "Register"
+        value: "Register",
+        className: "w-full px-4 py-2 mb-2 rounded gradient-button focus:outline-none"
     }
 ];

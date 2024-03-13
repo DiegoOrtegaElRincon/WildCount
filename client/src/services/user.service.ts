@@ -1,22 +1,28 @@
-import {message} from 'antd';
-import http from './http-common';
+import { message } from 'antd';
+import http from './http-common'
 
 const url = '/auth/v1/';
 
-const getToken = () => {
-  let cookie = document.cookie.split('; ').find(cookie => cookie.startsWith('access-token'))?.split('')[1];
-  let token = `Bearer ${cookie}`;
+const getCookieToken = () => {
+  const cookies = document.cookie.split(';');
+  let token = '';
+  for (let cookie of cookies) {
+    const [cookieName, cookieValue] = cookie.split('=').map(c => c.trim());
+    if (cookieName === 'access_token') {
+      token = cookieValue;
+    }
+  }
   return token;
 };
 
 const setCookieToken = (value, seconds) => {
-  const expirationDate:Date = new Date();
+  const expirationDate: Date = new Date();
   expirationDate.setTime(expirationDate.getTime() + (seconds * 1000));
-  const cookieValue:string = `access_token=${encodeURIComponent(value)}; expires=${expirationDate.toUTCString()}; path=/`;
+  const cookieValue: string = `access_token=${encodeURIComponent(value)}; expires=${expirationDate.toUTCString()}; path=/`;
   document.cookie = cookieValue;
 };
 
-const verifyEmail = token  => {
+const verifyEmail = token => {
   let body = {};
   http.put(`${url}user`, body, {
     headers: {
@@ -31,7 +37,7 @@ const verifyEmail = token  => {
   });
 };
 
-const signUp = (password:string, email:string) => {
+const signUp = (password: string, email: string) => {
   let body = {
     "email": email,
     "password": password
@@ -43,7 +49,7 @@ const signUp = (password:string, email:string) => {
   });
 };
 
-const signIn = (password:string, email:string, onLogin:Function) => {
+const signIn = (password: string, email: string, onLogin: Function, onClose: Function) => {
   let body = {
     "email": email,
     "password": password
@@ -51,32 +57,33 @@ const signIn = (password:string, email:string, onLogin:Function) => {
   http.post(`${url}token?grant_type=${password}`, body).then((res) => {
     const token = res.data;
     setCookieToken(token.access_token, token.expires_in);
-    console.log(getToken());
-    
+    onClose();
     onLogin();
   }).catch(() => {
     message.error('Invalid email or password');
   });
 };
 
-const loggedUser = () => {
-  http.get(`${url}user`, {
+const loggedUser = (token) => {
+  return http.get(`${url}user`, {
     headers: {
       ...http.defaults.headers.common,
-      Authorization: getToken()
+      Authorization: `Bearer ${token}`
     }
-  });
+  })
 };
 
 const signOut = () => {
-  //Delete the cookie
+  document.cookie = 'access_token=; Max-Age=0; path=/';
+  window.location.href = '/';
 };
 
 // const deleteAccount = () => {
-  
+
 // }
 
 const UsersService = {
+  getCookieToken,
   signUp,
   signIn,
   verifyEmail,
