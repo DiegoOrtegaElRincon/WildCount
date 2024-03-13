@@ -7,8 +7,7 @@ const createUserData = userData => {
     user_id: userData.id,
     email: userData.email,
     name: null,
-    phone: null,
-    image: null
+    phone: null
   };
 
   http.post(url, body).then(() => {
@@ -27,7 +26,7 @@ const getUserData = (userId, token) => {
   })
 };
 
-const UpdateUserData = (userData, token) => {
+const updateUserData = (userData, token) => {
   http.put(`rest/v1/user_data?user_id=eq.${userData.user_id}`, {
     headers: {
       ...http.defaults.headers.common,
@@ -40,10 +39,44 @@ const UpdateUserData = (userData, token) => {
   });
 };
 
+const updateUserImage = (userId, file, token) => {
+  let body = new FormData();
+  body.append('image', file);
+  http.put(`storage/v1/object/user_image/${userId}_image`, body, {
+    headers: {
+      ...http.defaults.headers.common,
+      Authorization: `Bearer ${token}`
+    }
+  });
+};
+
+const getUserImage = (userId, token) => {
+  http.get(`storage/v1/object/user_image/${userId}_image`, {
+    headers: {
+      ...http.defaults.headers.common,
+      Authorization: `Bearer ${token}`
+    }
+  });
+};
+
+const createUserImage = (userId, file, token) => {
+  let body = new FormData();
+  body.append('image', file);
+  http.post(`storage/v1/object/user_image/${userId}_image`, body, {
+    headers: {
+      ...http.defaults.headers.common,
+      Authorization: `Bearer ${token}`
+    }
+  });
+};
+
 const UsersDataService = {
   createUserData,
   getUserData,
-  UpdateUserData
+  updateUserData,
+  updateUserImage,
+  getUserImage,
+  createUserImage
 };
 
 export default UsersDataService;
