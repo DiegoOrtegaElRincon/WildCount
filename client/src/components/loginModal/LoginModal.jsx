@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./LoginModal.scss";
 import { Link } from "react-router-dom";
-import UsersService from "../../services/user.service";
+import UsersService from "../../services/user_auth.service";
 import { loginButton } from "../../constants";
 
 const LoginModal = ({ isOpen, onClose, onLogin }) => {
@@ -9,7 +9,6 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
   const [password, setPassword] = useState("");
 
   const signIn = () => {
-    console.log(password);
     UsersService.signIn(password, email, onLogin, onClose);
   };
 
