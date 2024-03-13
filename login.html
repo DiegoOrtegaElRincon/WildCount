@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .border-gradient {
+            border-width: 0.5px;
+            background-image: linear-gradient(white, white),
+                linear-gradient(to top, #A6FF86, #18C9DA);
+            border-radius: 4px;
+            border: transparent;
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+            padding: 0.5px;
+        }
+
+        .gradient-button {
+            background: linear-gradient(to top, #A6FF86, #18C9DA);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            width: 50%;
+            /* Set button width to 100% */
+            box-sizing: border-box;
+            /* Ensure padding and border are included in the width */
+        }
+
+        .gradient-button:hover {
+            background: linear-gradient(to top, #18C9DA, #A6FF86);
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+
+    <div class="flex justify-center items-center h-screen">
+        <div class="bg-white p-8 rounded shadow-md max-w-sm w-full text-center border-gradient">
+            <h2 class="text-xl font-bold mb-4">Login</h2>
+            <form>
+                <input type="text" name="username" placeholder="Username"
+                    class="block w-full px-4 py-2 mb-4 rounded-full border border-gray-300 focus:outline-none focus:border-blue-500 border-gradient"
+                    required>
+                <input type="password" name="password" placeholder="Password"
+                    class="block w-full px-4 py-2 mb-4 rounded-full border border-gray-300 focus:outline-none focus:border-blue-500 border-gradient"
+                    required>
+                <button type="submit" class="px-4 py-2 rounded gradient-button focus:outline-none">Login</button>
+                <button type="button"
+                    class="px-4 py-2 mt-2 rounded gradient-button focus:outline-none">Register</button>
+            </form>
+            <div class="text-sm mt-4">
+                <a href="#" class="text-blue-500">Continue as Guest</a> |
+                <a href="#" class="text-blue-500">Google Login</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
