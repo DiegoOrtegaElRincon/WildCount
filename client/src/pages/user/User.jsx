@@ -3,6 +3,7 @@ import LoginModal from "../../components/loginModal/LoginModal";
 import UsersAuthService from "../../services/user_auth.service";
 import { message } from "antd";
 import img from "../../assets/tom.myspace.jpeg";
+import "./user.scss";
 import UsersTokenService from "../../services/user_token.service";
 import UsersDataService from "../../services/user_data.service";
 
@@ -64,16 +65,16 @@ const User = () => {
   return (
     <div>
       {!isModalOpen && (
-        <div className="flex flex-col items-center mt-10">
+        <div className="flex flex-col items-center mt-40 mb-8">
           <img
             src={img} // Replace "profile-picture.jpg" with the path to your profile picture
             alt="Profile Picture"
-            className="w-32 h-32 rounded-full mb-4"
+            className="w-32 h-32 rounded mb-8"
           />
           <input
             type="text"
             placeholder="Name"
-            className="border-gradient rounded-lg px-0.5 py-0.5 mb-4"
+            className="border-gradient rounded-lg px-0.5 py-0.5 mb-8"
             value={user.name}
             onChange={(event) => {
               setUser({ ...user, name: event.target.value });
@@ -82,7 +83,7 @@ const User = () => {
           <input
             type="email"
             placeholder="Email"
-            className="border-gradient rounded-lg px-0.5 py-0.5 mb-4"
+            className="border-gradient rounded-lg px-0.5 py-0.5 mb-8"
             value={user.email}
             onChange={(event) => {
               setUser({ ...user, email: event.target.value });
@@ -91,7 +92,7 @@ const User = () => {
           <input
             type="tel"
             placeholder="Phone Number"
-            className="border-gradient rounded-lg px-0.5 py-0.5 mb-4"
+            className="border-gradient rounded-lg px-0.5 py-0.5 mb-8"
             value={user.phone}
             onChange={(event) => {
               setUser({ ...user, phone: event.target.value });
@@ -106,14 +107,15 @@ const User = () => {
           </button>
           <button
             onClick={signOut}
-            className="gradient-button focus:outline-none text-white font-bold py-2 px-4 rounded"
-            style={{ marginTop: "10px" }}>
-            SignOut
+            className="border-gradient rounded-lg px-0.5 py-0.5 mb-8 focus:outline-none text-[#ADA8A8] sign_btn"
+          >
+            Sign Out
           </button>
         </div>
       )}
 
       <br />
+
       <LoginModal
         isOpen={isModalOpen}
         onClose={() => verifyToken()}
