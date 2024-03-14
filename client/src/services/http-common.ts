@@ -1,12 +1,13 @@
 import axios, { AxiosRequestConfig } from 'axios';
 const APIKEY = import.meta.env.VITE_API_KEY;
+const APIURL = import.meta.env.VITE_API_URL;
 
 interface InternalAxiosRequestConfig extends AxiosRequestConfig {
   headers: any;
 }
 
 const api = axios.create({
-  baseURL: "https://trobansvejfahukvcefd.supabase.co/",
+  baseURL: APIURL,
   headers: {
     "Content-type": "application/json",
     Accept: "application/json",
