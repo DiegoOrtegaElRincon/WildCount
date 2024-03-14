@@ -1,30 +1,38 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { Animals, Extinct, Home, Regions, User, Startup, Continents } from './pages'
-import { Layout } from './components'
-import './App.css'
+import React from 'react';
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import { Animals, Extinct, Home, Regions, User, Startup, Continents } from './pages/index';
+import Layout from './components/Layout/Layout';
 
+// LayoutWrapper component to include Layout at the routes level
+const LayoutWrapper = () => (
+  <Layout>
+    <Outlet /> {/* Renders the current route's element */}
+  </Layout>
+);
 
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path='/' element={<Startup />} />
-        <Route path='/*' element={
-          <Layout>
-            <Routes>
-              <Route path='/home' element={<Home />} />
-              <Route path='/extinct' element={<Extinct />} />
-              <Route path='/continents' element={<Continents />} />
-              <Route path='/regions' element={<Regions />} />
-              <Route path='/regions/:continentId' element={<Regions />} />
-              <Route path='/animals' element={<Animals />} />
-              <Route path='/user' element={<User />} />
-            </Routes>
-          </Layout>
-        } />
-      </Routes>
-    </Router>
-  )
-}
+// Router configuration
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Startup />,
+  },
+  {
+    path: '/',
+    element: <LayoutWrapper />, // Wrap children routes with Layout
+    children: [
+      { path: 'home', element: <Home /> },
+      { path: 'extinct', element: <Extinct /> },
+      { path: 'continents', element: <Continents /> },
+      { path: 'regions', element: <Regions /> },
+      { path: 'regions/:continentId', element: <Regions /> },
+      { path: 'animals', element: <Animals /> },
+      { path: 'user', element: <User /> },
+    ],
+  },
+]);
 
-export default App
+const App = () => {
+  return <RouterProvider router={router} />;
+};
+
+export default App;
