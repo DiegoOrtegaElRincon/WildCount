@@ -4,10 +4,12 @@ import './AnimalComponent.scss';
 
 const AnimalComponent = (props) => {
   const [description, setDescription] = useState(`${props.animal.description.slice(0, 100)}...`);
+  const [text, setText] = useState(false);
 
   const allDescription = () => {
     setDescription(props.animal.description);
-  }
+    setText(true);
+  };
 
   return (
     <>
@@ -20,7 +22,7 @@ const AnimalComponent = (props) => {
         <p className='animal-count'>Amount left: {props.animal.amount_left}</p>
       </div>
       <div className='animal-description'>
-      <p onClick={allDescription}>{description}</p>
+        <p>{description} {!text && <span onClick={allDescription}><b>Read More</b></span>}</p>
       </div>
     </>
   );

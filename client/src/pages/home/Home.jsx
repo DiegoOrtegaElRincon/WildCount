@@ -9,7 +9,7 @@ const Home = () => {
     return Math.floor(Math.random() * 20) + 1;
   };
 
-  const fetchAnimal = async() => {
+  const fetchAnimal = async () => {
     await AnimalService.getAnimalById(randomId()).then(res => {
       setAnimal(res[0]);
     })
@@ -20,8 +20,10 @@ const Home = () => {
   }, []);
 
   return (
-    <div className='animal-container'>
-      {animal && <AnimalComponent animal={animal}/>}
+    <div>
+      <div className='flex flex-col justify-center items-center h-[100vh] my-8'>
+        {animal && <AnimalComponent animal={animal} />}
+      </div>
     </div>
   )
 }
