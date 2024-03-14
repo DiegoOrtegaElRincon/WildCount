@@ -51,8 +51,8 @@ const updateUserImage = (userId, file, token) => {
   }).then(() => {
     console.log('Ok');
   }).catch(err => {
-    console.log(err);
-  });;
+    UsersDataService.createUserImage(userId, file, token);
+  });
 };
 
 const getUserImage = (userId) => {
@@ -68,6 +68,11 @@ const createUserImage = (userId, file, token) => {
       ...http.defaults.headers.common,
       Authorization: `Bearer ${token}`
     }
+  }).then(() => {
+    console.log('Ok');
+  }).catch(err => {
+    console.log(err);
+    
   });
 };
 
