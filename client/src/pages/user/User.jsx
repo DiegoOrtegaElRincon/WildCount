@@ -39,39 +39,45 @@ const User = () => {
   }, []);
 
   return (
-    <div>
+    <div className="dataForm">
       {!isModalOpen && (
         <div className="flex flex-col items-center mt-40 mb-8">
           <img
             src={img} // Replace "profile-picture.jpg" with the path to your profile picture
             alt="Profile Picture"
-            className="w-32 h-32 rounded mb-8"
+            className="w-42 h-42 rounded mb-8"
           />
           <input
             type="text"
             placeholder="Name"
-            className="border-gradient rounded-lg px-0.5 py-0.5 mb-8 "
+            className="border-gradient rounded-lg px-0.5 py-0.5 mb-8"
           />
           <input
             type="email"
             placeholder="Email"
-            className="border-gradient rounded-lg px-0.5 py-0.5 mb-8 "
+            className="border-gradient rounded-lg px-0.5 py-0.5 mb-8"
           />
           <input
             type="tel"
             placeholder="Phone Number"
-            className="border-gradient rounded-lg px-0.5 py-0.5 mb-8 "
+            className="border-gradient rounded-lg px-0.5 py-0.5 mb-8"
+          />
+
+          <input
+            type="password"
+            placeholder="New Password"
+            className="border-gradient rounded-lg px-0.5 py-0.5 mb-8"
           />
 
           <button
             type="submit"
-            className="gradient-button focus:outline-none text-white font-bold py-2 px-4 rounded"
+            className="gradient-button w-[250px] text-white font-bold rounded mb-3"
           >
             Submit
           </button>
           <button
             onClick={signOut}
-            className="border-gradient rounded-lg px-0.5 py-0.5 mb-8 focus:outline-none text-[#ADA8A8]   sign_btn"
+            className="border-gradient rounded-lg px-0.5 py-0.5 mb-8 focus:outline-none text-[#ADA8A8] w-[180px]  sign_btn"
           >
             Sign Out
           </button>
@@ -85,6 +91,10 @@ const User = () => {
         onClose={() => verifyToken()}
         onLogin={verifyToken}
       />
+
+      {/* Animation for decorative elements */}
+      <div className="left-animation" />
+      <div className="right-animation" />
     </div>
   );
 };

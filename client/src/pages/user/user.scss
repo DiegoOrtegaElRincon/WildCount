@@ -2,3 +2,56 @@
   margin-top: 25px;
   width: 150px;
 }
+
+.left-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50px; /* Adjust as needed */
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    #a6ff86 0%,
+    #18c9da 100%
+  ); /* Gradient from #a6ff86 to #18c9da */
+  animation: slide-in-left 1s forwards;
+}
+
+.right-animation {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 50px; /* Adjust as needed */
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    #a6ff86 0%,
+    #18c9da 100%
+  ); /* Gradient from #a6ff86 to #18c9da */
+  animation: slide-in-right 1s forwards;
+}
+
+@media (min-width: 1024px) {
+  .right-animation {
+    position: fixed;
+    right: 77px;
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
