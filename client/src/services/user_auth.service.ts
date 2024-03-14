@@ -22,11 +22,12 @@ const verifyEmail = token => {
   });
 };
 
-const signUp = (password: string, email: string) => {
+const signUp = (password: string, email: string, token:string) => {
   let body = {
     "email": email,
     "password": password
   };
+  let file = new File([], 'filename.txt', {type: 'text/plain'});
   http.post(`${url}signup`, body).then((res) => {
     message.success('Registered successfully. You will receive a verification email at that email address.');
     UsersDataService.createUserData(res.data);

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-import img from "../../assets/tom.myspace.jpeg";
 import UsersDataService from '../../services/user_data.service';
 
 function InputUpload(props) {
