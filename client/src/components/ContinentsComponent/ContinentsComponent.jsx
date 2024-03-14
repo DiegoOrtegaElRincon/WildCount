@@ -26,7 +26,7 @@ const ContinentsComponent = () => {
         <ul className='grid grid-cols-3 gap-8 pb-[85px] lg:pr-[85px] lg:pb-0 h-full'>
           {continents.map((continent) => (
             <li className='flex items-center justify-center' key={continent.id}>
-              <Link to={`/regions/${continent.id}`}><p className='text-center text-3xl'>{continent.continent_name}</p> <img className='max-w-[300px] w-full' src={continent.image} alt={continent.continent_name} /></Link>
+              <Link to={`/regions/${continent.id}`}><p className='text-center text-[4vw]'>{continent.continent_name}</p> <img className='max-w-[300px] w-full' src={continent.image} alt={continent.continent_name} /></Link>
             </li>
           ))}
         </ul>
