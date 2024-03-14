@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import LoginModal from "../../components/loginModal/LoginModal";
 import "./startup.scss";
-import UsersService from "../../services/user.service";
+import UsersAuthService from "../../services/user_auth.service";
 
 const Startup = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,7 +19,7 @@ const Startup = () => {
     const verifyEmail = () => {
         let token = getUrlToken() || false;
         if (token != false) {
-            UsersService.verifyEmail(token);
+            UsersAuthService.verifyEmail(token);
         }
     };
 

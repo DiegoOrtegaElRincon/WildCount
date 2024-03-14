@@ -19,15 +19,14 @@ const ContinentsComponent = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Continents</h1>
+    <div className='h-[100vh] flex items-center justify-center'>
       {error && <p>Error: {error}</p>}
       {!error && continents.length === 0 && <p>Loading...</p>}
       {continents.length > 0 && (
-        <ul>
+        <ul className='grid grid-cols-3 gap-8 pb-[85px] lg:pr-[85px] lg:pb-0 h-full'>
           {continents.map((continent) => (
-            <li key={continent.id}>
-              <Link to={`/regions/${continent.id}`}>{continent.continent_name}</Link>
+            <li className='flex items-center justify-center' key={continent.id}>
+              <Link to={`/regions/${continent.id}`}><p className='text-center text-[4vw]'>{continent.continent_name}</p> <img className='max-w-[300px] w-full' src={continent.image} alt={continent.continent_name} /></Link>
             </li>
           ))}
         </ul>

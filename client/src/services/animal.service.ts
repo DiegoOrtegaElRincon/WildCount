@@ -14,7 +14,7 @@ const getAnimals = () => {
 }
 
 const getAnimalById = (id) => {
-    return http.get(`${url}?id.eq=${id}`)
+    return http.get(`${url}?id=eq.${id}`)
         .then(response => {
             return response.data;
         })
@@ -24,9 +24,34 @@ const getAnimalById = (id) => {
         });
 }
 
+const getMostEndangeredAnimals = () => {
+    return http.get(`${url}?select=*&order=amount_left&limit=20`)
+        .then(response => {
+            return response.data;
+        })
+        .catch(error => {
+            console.error("Error fetching data: ", error);
+            throw error; // Rethrow the error so the calling component can catch it
+        });
+}
+
+const getAnimalsByRegionId = (regionId) => {
+    return http.get(`${url}?region_id=eq.${regionId}`)
+        .then(response => {
+            return response.data;
+        })
+        .catch(error => {
+            console.error("Error fetching data: ", error);
+            throw error; // Rethrow the error so the calling component can catch it
+        });
+}
+
+
 const AnimalService = {
     getAnimals,
-    getAnimalById
+    getAnimalById,
+    getMostEndangeredAnimals,
+    getAnimalsByRegionId
 };
 
 export default AnimalService;

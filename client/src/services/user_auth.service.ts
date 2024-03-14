@@ -1,26 +1,9 @@
 import { message } from 'antd';
 import http from './http-common'
+import UsersDataService from './user_data.service';
+import UsersTokenService from './user_token.service';
 
 const url = '/auth/v1/';
-
-const getCookieToken = () => {
-  const cookies = document.cookie.split(';');
-  let token = '';
-  for (let cookie of cookies) {
-    const [cookieName, cookieValue] = cookie.split('=').map(c => c.trim());
-    if (cookieName === 'access_token') {
-      token = cookieValue;
-    }
-  }
-  return token;
-};
-
-const setCookieToken = (value, seconds) => {
-  const expirationDate: Date = new Date();
-  expirationDate.setTime(expirationDate.getTime() + (seconds * 1000));
-  const cookieValue: string = `access_token=${encodeURIComponent(value)}; expires=${expirationDate.toUTCString()}; path=/`;
-  document.cookie = cookieValue;
-};
 
 const verifyEmail = token => {
   let body = {};
@@ -31,7 +14,9 @@ const verifyEmail = token => {
     }
   }).then(() => {
     message.success('Verified successfully.');
-    window.location.href = '/';
+    setTimeout(() => {
+      window.location.href = '/'; // Redirect to startupPage after message
+  }, 1000); // Adjust the delay to match your message duration
   }).catch(() => {
     message.error('Verification not possible, invalid key.');
   });
@@ -42,8 +27,9 @@ const signUp = (password: string, email: string) => {
     "email": email,
     "password": password
   };
-  http.post(`${url}signup`, body).then(() => {
+  http.post(`${url}signup`, body).then((res) => {
     message.success('Registered successfully. You will receive a verification email at that email address.');
+    UsersDataService.createUserData(res.data);
   }).catch(() => {
     message.error('Invalid email');
   });
@@ -54,9 +40,9 @@ const signIn = (password: string, email: string, onLogin: Function, onClose: Fun
     "email": email,
     "password": password
   };
-  http.post(`${url}token?grant_type=${password}`, body).then((res) => {
+  http.post(`${url}token?grant_type=password`, body).then((res) => {
     const token = res.data;
-    setCookieToken(token.access_token, token.expires_in);
+    UsersTokenService.setCookieToken(token.access_token, token.expires_in);
     onClose();
     onLogin();
   }).catch(() => {
@@ -64,11 +50,11 @@ const signIn = (password: string, email: string, onLogin: Function, onClose: Fun
   });
 };
 
-const loggedUser = (token) => {
+const loggedUser = () => {
   return http.get(`${url}user`, {
     headers: {
       ...http.defaults.headers.common,
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${UsersTokenService.getCookieToken()}`
     }
   })
 };
@@ -82,8 +68,7 @@ const signOut = () => {
 
 // }
 
-const UsersService = {
-  getCookieToken,
+const UsersAuthService = {
   signUp,
   signIn,
   verifyEmail,
@@ -92,4 +77,4 @@ const UsersService = {
   // deleteAccount
 }
 
-export default UsersService;
+export default UsersAuthService;
