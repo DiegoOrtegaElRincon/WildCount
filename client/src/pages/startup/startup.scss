@@ -49,6 +49,7 @@
 }
 
 .border-gradient {
+  width: 250px;
   border-width: 12px;
   background-image: linear-gradient(white, white),
     linear-gradient(to top, #a6ff86, #18c9da);
@@ -57,7 +58,6 @@
   background-origin: border-box;
   background-clip: content-box, border-box;
   padding: 12px;
-  z-index: 9999;
 }
 
 .gradient-button {
