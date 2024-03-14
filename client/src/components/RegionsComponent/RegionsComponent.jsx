@@ -114,7 +114,7 @@ const RegionsComponent = () => {
                             <>
                                 <button onClick={showPreviousAnimal}>&lt;</button>
                                 <div className='border p-2'>
-                                    <img src={animalsInRegion[currentAnimalIndex]?.image_url || placeholder_image} alt={animalsInRegion[currentAnimalIndex]?.name} className='w-24 h-auto' />
+                                    <img src={animalsInRegion[currentAnimalIndex]?.image || placeholder_image} alt={animalsInRegion[currentAnimalIndex]?.name} className='w-24 h-auto' />
                                     <h3 className='text-md'>{animalsInRegion[currentAnimalIndex]?.name}</h3>
                                     <p className='text-sm'>{animalsInRegion[currentAnimalIndex]?.description}</p>
                                     <p className='text-sm'><strong>Amount Left:</strong> {animalsInRegion[currentAnimalIndex]?.amount_left}</p>
