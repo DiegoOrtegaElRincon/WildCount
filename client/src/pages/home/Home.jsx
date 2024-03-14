@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import AnimalService from '../../services/animal.service';
+import AnimalComponent from '../../components/AnimalComponent/AnimalComponent';
 
 const Home = () => {
   const [animal, setAnimal] = useState();
@@ -9,20 +11,13 @@ const Home = () => {
 
 
   useEffect(() => {
-    
+    AnimalService.getAnimalById(randomId());
   }, []);
 
   return (
     <div>
       Home
-      {animal &&
-        <>
-          <div>
-            <img src={animal.img} alt="Animal image" />
-          </div>
-          <h2>{animal.name}</h2>
-          <p>{animal.description}</p>
-        </>}
+      {animal && <AnimalComponent/>}
     </div>
   )
 }
