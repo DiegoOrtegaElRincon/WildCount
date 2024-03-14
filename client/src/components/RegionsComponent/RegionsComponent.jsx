@@ -1,68 +1,48 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom'; // Add this import
+import { useParams, useNavigate } from 'react-router-dom';
 import RegionService from '../../services/region.service';
-import ContinentService from '../../services/continent.service';
-import { useNavigate } from 'react-router-dom';
-// Mock data for continents - replace with actual data source if available
+
 const continents = [
     { id: '1', name: 'America' },
     { id: '2', name: 'Europe' },
     { id: '3', name: 'Asia' },
     { id: '4', name: 'Africa' },
     { id: '5', name: 'Oceania' },
-    { id: '6', name: 'Polar Cirle' },
-    // Add more continents as needed
+    { id: '6', name: 'Polar Circle' },
 ];
 
 const RegionsComponent = () => {
     const [regions, setRegions] = useState([]);
-    const [selectedContinentId, setSelectedContinentId] = useState('');
     const [error, setError] = useState('');
     const { continentId } = useParams();
-
-    useEffect(() => {
-        if (continentId) {
-            setSelectedContinentId(continentId);
-        }
-    }, [continentId]);  
-
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchRegions = async () => {
             try {
-                let response;
-                if (selectedContinentId) {
-                    response = await RegionService.getRegionsByContinentId(selectedContinentId);
-                } else {
-                    response = await RegionService.getRegions();
-                }
+                const response = continentId 
+                    ? await RegionService.getRegionsByContinentId(continentId)
+                    : await RegionService.getRegions();
                 setRegions(response);
-                console.log(response)
+                console.log(response);
             } catch (error) {
                 console.error("Error fetching regions:", error);
                 setError('Failed to fetch regions');
             }
         };
-    
+
         fetchRegions();
-    }, [selectedContinentId]);
-    
-    
-    const navigate = useNavigate();
+    }, [continentId]);
 
     const handleContinentChange = (event) => {
-        setSelectedContinentId(event.target.value);
-        navigate(`/regions/${event.target.value}`); // Update the URL
+        navigate(`/regions/${event.target.value}`); // Directly navigate without setting state
     };
-    
-    const displayRegions = regions || [];
 
     return (
-        <div>
-            <h1>Regions</h1>
-            <div>
-                <label htmlFor="continent-select">Choose a continent:</label>
-                <select id="continent-select" onChange={handleContinentChange} value={selectedContinentId}>
+        <div className='p-4'>
+            <div className='flex flex-col pb-4'>
+                <label htmlFor="continent-select" className='text-2xl pb-1'>Choose a continent:</label>
+                <select id="continent-select" className='w-36' onChange={handleContinentChange} value={continentId || ''}>
                     <option value="">All Continents</option>
                     {continents.map((continent) => (
                         <option key={continent.id} value={continent.id}>{continent.name}</option>
@@ -70,11 +50,11 @@ const RegionsComponent = () => {
                 </select>
             </div>
             {error && <p>Error: {error}</p>}
-            {!error && displayRegions.length === 0 && <p>No regions found.</p>}
-            {displayRegions.length > 0 && (
+            {!error && regions.length === 0 && <p>No regions found.</p>}
+            {regions.length > 0 && (
                 <ul>
-                    {displayRegions.map((region) => (
-                        <li key={region.id}>{region.region_name}</li> // Adjust according to your data structure
+                    {regions.map((region) => (
+                        <li key={region.id} className='pb-1'>{region.region_name}</li>
                     ))}
                 </ul>
             )}
