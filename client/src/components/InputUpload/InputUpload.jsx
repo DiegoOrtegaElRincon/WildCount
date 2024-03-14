@@ -6,12 +6,12 @@ import UsersDataService from '../../services/user_data.service';
 function InputUpload(props) {
   const [imgSrc, setImgSrc] = useState(null);
   
+  const fetchImage = async() => {
+   const fetchedImage = await UsersDataService.getUserImage(props.userId);
+   setImgSrc(fetchedImage);
+  }
+  
   useEffect(() => {
-     const fetchImage = async() => {
-      const fetchedImage = await UsersDataService.getUserImage(props.userId);
-      setImgSrc(fetchedImage);
-     }
-
      fetchImage();
   }, [props.userId, props.token]);
 
@@ -33,7 +33,7 @@ function InputUpload(props) {
     <div>
       <label htmlFor="fileInput">
         <img
-          src={imgSrc || img}
+          src={imgSrc}
           alt="Uploaded Image"
           className="w-32 h-32 rounded mb-2"
         />
