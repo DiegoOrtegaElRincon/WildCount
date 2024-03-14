@@ -59,7 +59,8 @@ const User = () => {
   }, []);
 
   const submitData = () => {
-    UsersDataService.UpdateUserData(user);
+    console.log(user);
+    // UsersDataService.UpdateUserData(user);
   }
 
   return (

@@ -1,16 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import AnimalService from '../../services/animal.service';
+import img from "../../assets/animal.myspace.jpg";
+import './AnimalComponent.scss';
 
-const AnimalComponent = (animal) => {
-  
+const AnimalComponent = (props) => {
+  const [description, setDescription] = useState(`${props.animal.description.slice(0, 100)}...`);
+
+  const allDescription = () => {
+    setDescription(props.animal.description);
+  }
+
   return (
     <>
       <div className='animal-image-container'>
-        <img src={animal.img} alt="Animal image" />
+        <img src={props.animal.image || img} alt="Animal image" />
       </div>
-      <h2 className='animal-name'>{animal.name}</h2>
-      <p className='animal-count'>{animal.count}</p>
-      <p className='animal-description'>{animal.description}</p>
+      <h2 className='animal-name'>{props.animal.name}</h2>
+      <div className='animal-data'>
+        <p className='animal-age'>Age expectancy: {props.animal.age_expectancy}</p>
+        <p className='animal-count'>Amount left: {props.animal.amount_left}</p>
+      </div>
+      <div className='animal-description'>
+      <p onClick={allDescription}>{description}</p>
+      </div>
     </>
   );
 };

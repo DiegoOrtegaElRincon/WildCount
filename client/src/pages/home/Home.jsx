@@ -9,15 +9,19 @@ const Home = () => {
     return Math.floor(Math.random() * 20) + 1;
   };
 
+  const fetchAnimal = async() => {
+    await AnimalService.getAnimalById(randomId()).then(res => {
+      setAnimal(res[0]);
+    })
+  };
 
   useEffect(() => {
-    AnimalService.getAnimalById(randomId());
+    fetchAnimal();
   }, []);
 
   return (
-    <div>
-      Home
-      {animal && <AnimalComponent/>}
+    <div className='animal-container'>
+      {animal && <AnimalComponent animal={animal}/>}
     </div>
   )
 }
