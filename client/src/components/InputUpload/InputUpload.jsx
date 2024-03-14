@@ -1,20 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import img from "../../assets/tom.myspace.jpeg";
+import UsersDataService from '../../services/user_data.service';
 
-function InputUpload() {
+function InputUpload(props) {
   const [imgSrc, setImgSrc] = useState(null);
+  
+  useEffect(() => {
+     const fetchImage = async() => {
+      const fetchedImage = await UsersDataService.getUserImage(props.userId);
+      setImgSrc(fetchedImage);
+     }
+
+     fetchImage();
+  }, [props.userId, props.token]);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
+    console.log(file);
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
         setImgSrc(reader.result);
       };
       reader.readAsDataURL(file);
+      UsersDataService.updateUserImage(props.userId, file, props.token);
     }
   };
+
 
   return (
     <div>

@@ -1,5 +1,7 @@
-import http from './http-common'
+import http from './http-common';
 
+
+const APIURL = import.meta.env.VITE_API_URL;
 const url = 'rest/v1/user_data';
 
 const createUserData = userData => {
@@ -50,13 +52,8 @@ const updateUserImage = (userId, file, token) => {
   });
 };
 
-const getUserImage = (userId, token) => {
-  http.get(`storage/v1/object/user_image/${userId}_image`, {
-    headers: {
-      ...http.defaults.headers.common,
-      Authorization: `Bearer ${token}`
-    }
-  });
+const getUserImage = (userId) => {
+  return `${APIURL}storage/v1/object/public/user_image/${userId}_image`;
 };
 
 const createUserImage = (userId, file, token) => {
