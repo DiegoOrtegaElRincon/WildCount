@@ -1,0 +1,49 @@
+.animal-image-container {
+  width: 90%;
+  max-width: 600px;
+}
+
+.animal-image-container > img {
+  width: 100%;
+  max-height: 400px;
+  height: auto;
+}
+
+.animal-name {
+  background: linear-gradient(180deg,#18C9DA, #A6FF86);
+  background-clip: text;
+  color: transparent;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.animal-data {
+  border: solid 1pt rgb(205, 194, 194);
+  background-color: rgb(245, 242, 240);
+  width: 90%;
+  max-width: 600px;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.animal-data > p {
+  display: inline;
+}
+
+.animal-age {
+  margin-left: 5px;
+}
+
+.animal-count {
+  margin-right: 5px;
+}
+
+.animal-description {
+  width: 90%;
+  max-width: 600px;
+}
+
+.div {
+  margin-top: 5px;
+}

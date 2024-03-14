@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import AnimalService from '../../services/animal.service';
+import AnimalComponent from '../../components/AnimalComponent/AnimalComponent';
 
 const Home = () => {
   const [animal, setAnimal] = useState();
@@ -7,22 +9,21 @@ const Home = () => {
     return Math.floor(Math.random() * 20) + 1;
   };
 
+  const fetchAnimal = async () => {
+    await AnimalService.getAnimalById(randomId()).then(res => {
+      setAnimal(res[0]);
+    })
+  };
 
   useEffect(() => {
-    
+    fetchAnimal();
   }, []);
 
   return (
     <div>
-      Home
-      {animal &&
-        <>
-          <div>
-            <img src={animal.img} alt="Animal image" />
-          </div>
-          <h2>{animal.name}</h2>
-          <p>{animal.description}</p>
-        </>}
+      <div className='flex flex-col justify-center items-center h-[100vh] my-8'>
+        {animal && <AnimalComponent animal={animal} />}
+      </div>
     </div>
   )
 }

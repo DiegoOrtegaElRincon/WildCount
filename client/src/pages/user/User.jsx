@@ -9,6 +9,7 @@ import InputUpload from "../../components/InputUpload/InputUpload";
 
 const User = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [saveToken, setSaveToken] = useState();
   const [user, setUser] = useState({
     user_id: '',
     email: '',
@@ -19,6 +20,7 @@ const User = () => {
 
 
   const fetchUser = (token) => {
+    setSaveToken(token);
     UsersAuthService.loggedUser(token)
       .then((res) => {
         setIsModalOpen(false);
@@ -59,14 +61,15 @@ const User = () => {
   }, []);
 
   const submitData = () => {
-    UsersDataService.UpdateUserData(user);
+    console.log(user);
+    // UsersDataService.UpdateUserData(user);
   }
 
   return (
     <div>
       {!isModalOpen && (
         <div className="flex flex-col items-center mt-40 mb-8">
-          <InputUpload/>
+          <InputUpload token={saveToken} userId={user.user_id}/>
           <input
             type="text"
             placeholder="Name"

@@ -1,5 +1,6 @@
-import http from './http-common'
+import http from './http-common';
 
+const APIURL = import.meta.env.VITE_API_URL;
 const url = 'rest/v1/user_data';
 
 const createUserData = userData => {
@@ -34,7 +35,7 @@ const updateUserData = (userData, token) => {
     }
   }).then(res => {
     console.log(res);
-  }).catch((err)=> {
+  }).catch((err) => {
     console.log(err);
   });
 };
@@ -47,21 +48,21 @@ const updateUserImage = (userId, file, token) => {
       ...http.defaults.headers.common,
       Authorization: `Bearer ${token}`
     }
-  });
+  }).then(() => {
+    console.log('Ok');
+  }).catch(err => {
+    console.log(err);
+  });;
 };
 
-const getUserImage = (userId, token) => {
-  http.get(`storage/v1/object/user_image/${userId}_image`, {
-    headers: {
-      ...http.defaults.headers.common,
-      Authorization: `Bearer ${token}`
-    }
-  });
+const getUserImage = (userId) => {
+  return `${APIURL}storage/v1/object/public/user_image/${userId}_image`;
 };
 
 const createUserImage = (userId, file, token) => {
   let body = new FormData();
   body.append('image', file);
+
   http.post(`storage/v1/object/user_image/${userId}_image`, body, {
     headers: {
       ...http.defaults.headers.common,

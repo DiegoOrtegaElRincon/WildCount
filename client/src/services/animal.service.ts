@@ -14,7 +14,7 @@ const getAnimals = () => {
 }
 
 const getAnimalById = (id) => {
-    return http.get(`${url}?id.eq=${id}`)
+    return http.get(`${url}?id=eq.${id}`)
         .then(response => {
             return response.data;
         })
